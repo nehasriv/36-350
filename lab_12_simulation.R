@@ -22,8 +22,15 @@ run_simulation = function(n_trials, n, p, cutoff=.05) {
   for (i in 1:n_trials) {
     data = generate_data(n,p)
     p.values = model_select(data$covariates, data$responses)
+    save(p.values)
   }
+}
+
+
+make_plot = function(datapath){
+  p.values = load(p.values)
   hist(p.values)
 }
 
 run_simulation(10, n=c(100,1000,10000), p=c(10,20,50), cutoff = .05)
+
